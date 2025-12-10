@@ -2,4 +2,5 @@
   <Project Path="Hexagonal.Application/Hexagonal.Application.csproj" />
   <Project Path="Hexagonal.Domain/Hexagonal.Domain.csproj" />
   <Project Path="Hexagonal.Infraestructure/Hexagonal.Infraestructure.csproj" />
+  <Project Path="Proyecto_De_Consola/Proyecto_De_Consola.csproj" Id="abd1102d-98ad-463c-9a2a-5af540dabfed" />
 </Solution>
