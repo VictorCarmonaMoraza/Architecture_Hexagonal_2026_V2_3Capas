@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hexagonal.Infraestructure.DBContext
 {
-    public class DBContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public DbSet<ItemModel> ItemsModel { get; set; }
+        
 
-        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
@@ -16,5 +16,7 @@ namespace Hexagonal.Infraestructure.DBContext
             //Mapeamos nuestro modelo contra la tabla de la base de datos
             modelBuilder.Entity<ItemModel>().ToTable("Items");
         }
+
+        public DbSet<ItemModel> ItemsModel { get; set; }
     }
 }
