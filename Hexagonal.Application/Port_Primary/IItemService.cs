@@ -6,5 +6,7 @@ namespace Hexagonal.Application.Port_Primary
     {
         Task<IEnumerable<Item>> GetAllItemsAsync();
         Task AddItemAsync(string title);
+
+        Task UpdateItemById(int id);
     }
 }

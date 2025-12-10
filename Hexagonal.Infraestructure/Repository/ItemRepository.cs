@@ -34,5 +34,15 @@ namespace Hexagonal.Infraestructure.Repository
         {
             return await _context.ItemsModel.Select(e => new Item(e.Id, e.Title, e.IsCompleted)).ToListAsync();
         }
+
+        public async Task updateItem(int id)
+        {
+            var model = await _context.ItemsModel.FindAsync(id);
+            if (model != null)
+            {
+                model.IsCompleted = true;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

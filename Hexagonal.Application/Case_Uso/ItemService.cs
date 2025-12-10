@@ -25,5 +25,10 @@ namespace Hexagonal.Application.Case_Uso
         {
             return await _itemRepository.GetAllItemsAsync();
         }
+
+        public async Task UpdateItemById(int id)
+        {
+            await _itemRepository.updateItem(id);
+        }
     }
 }
