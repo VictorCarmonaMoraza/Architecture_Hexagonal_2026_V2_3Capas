@@ -8,6 +8,6 @@ namespace Hexagonal.Application.Genericos
         Task<IEnumerable<TEntity>> GetAllItemsAsync();
         Task AddItemAsync(TEntity entity);
 
-        Task UpdateItemById(TEntity entiy);
+        Task UpdateItemById(TEntity entity);
     }
 }
