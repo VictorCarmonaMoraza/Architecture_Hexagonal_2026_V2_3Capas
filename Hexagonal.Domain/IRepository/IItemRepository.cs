@@ -7,6 +7,6 @@ namespace Hexagonal.Domain.interfaces
         Task<IEnumerable<Item>> GetAllItemsAsync();
         Task AddAsync(Item item);
 
-        Task updateItem(int id);
+        Task<string> updateItem(int id);
     }
 }

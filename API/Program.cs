@@ -14,9 +14,9 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //Inyeccion de dependencias
-builder.Services.AddDbContext<ApplicationDbContext>(options=> options.UseSqlServer(connectionString));
-builder.Services.AddTransient<IItemRepository,ItemRepository>();
-builder.Services.AddTransient<IItemService,ItemService>();
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddTransient<IItemRepository, ItemRepository>();
+builder.Services.AddTransient<IItemService, ItemService>();
 //Fin inyeccion de dependencias
 
 //Configurar swagger
@@ -35,6 +35,21 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapGet("/items", async (IItemService itemService) =>
+{
+    var items = await itemService.GetAllItemsAsync();
+    return Results.Ok(items);
+}).WithName("GetItems");
+app.MapPut("/items/{id}", async (int id, IItemService itemService) =>
+{
+    await itemService.UpdateItemById(id);
+}).WithName("UpdateItems");
+app.MapPost("/items", async (string title, IItemService itemService) =>
+{
+    await itemService.AddItemAsync(title);
+    return Results.Ok("Item agregado correctamente");
+}).WithName("CreateItem");
 
 
 app.Run();

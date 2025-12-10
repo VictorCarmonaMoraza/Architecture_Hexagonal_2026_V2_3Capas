@@ -35,14 +35,19 @@ namespace Hexagonal.Infraestructure.Repository
             return await _context.ItemsModel.Select(e => new Item(e.Id, e.Title, e.IsCompleted)).ToListAsync();
         }
 
-        public async Task updateItem(int id)
+
+        public async Task<string> updateItem(int id)
         {
             var model = await _context.ItemsModel.FindAsync(id);
-            if (model != null)
-            {
-                model.IsCompleted = true;
-                await _context.SaveChangesAsync();
-            }
+
+            if (model == null)
+                return "El item no existe";
+
+            model.IsCompleted = true;
+            await _context.SaveChangesAsync();
+
+            return "Item actualizado correctamente";
         }
     }
 }
+
