@@ -3,10 +3,10 @@
     public class Nota
     {
         public int Id { get; set; }
-        public int ItenId { get; private set; }
+        public int ItemId { get; private set; }
         public string Message { get; private set; }
 
-        public Nota(int id, int itenId, string message)
+        public Nota(int id, int itemId, string message)
         {
             if (string.IsNullOrEmpty(message))
             {
@@ -18,7 +18,7 @@
             }
 
             Id = id;
-            ItenId = itenId;
+            ItemId = itemId;
             Message = message;
         }
 
