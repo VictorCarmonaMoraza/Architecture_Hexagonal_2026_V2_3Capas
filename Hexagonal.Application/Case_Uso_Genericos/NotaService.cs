@@ -1,11 +1,6 @@
 ﻿using Hexagonal.Application.Genericos;
 using Hexagonal.Domain.Entities;
 using Hexagonal.Domain.GenericosDomain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hexagonal.Application.Case_Uso_Genericos
 {
@@ -29,9 +24,14 @@ namespace Hexagonal.Application.Case_Uso_Genericos
             return await _notaRepository.GetAllItemsAsync();
         }
 
-        public async Task UpdateItemById(Nota entity)
+        public async Task<Nota?> GetByIdAsync(int id)
         {
-            await _notaRepository.updateItem(entity);
+            return await _notaRepository.GetByIdAsync(id);
+        }
+
+        public async Task<bool> UpdateItemById(Nota entity)
+        {
+            return await _notaRepository.updateItem(entity);
         }
     }
 }

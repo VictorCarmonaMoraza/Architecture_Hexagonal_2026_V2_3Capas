@@ -14,7 +14,7 @@ namespace Hexagonal.Infraestructure.DBContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Mapeamos nuestro modelo contra la tabla de la base de datos
-            modelBuilder.Entity<ItemModel>().ToTable("Items");
+            modelBuilder.Entity<ItemModel>().ToTable("Item");
             modelBuilder.Entity<NoteModel>().ToTable("Note")
                 .HasOne(n=>n.Item)
                 .WithMany(i=>i.Notes)

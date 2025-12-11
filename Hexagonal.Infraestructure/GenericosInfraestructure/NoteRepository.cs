@@ -18,11 +18,18 @@ namespace Hexagonal.Infraestructure.GenericosInfraestructure
 
         public async Task AddAsync(Nota nota)
         {
+
+            var modelItem = await _context.ItemsModel.FindAsync(nota.ItemId);
+
+            if (modelItem.IsCompleted == true)
+            {
+                return;
+            }
             var model = new NoteModel()
             {
                 Message = nota.Message,
                 ItemId = nota.ItemId,
-                CreatdedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow
             };
             _context.NotesModel.Add(model);
             await _context.SaveChangesAsync();
@@ -33,14 +40,20 @@ namespace Hexagonal.Infraestructure.GenericosInfraestructure
              return await _context.NotesModel.Select(n => new Nota(n.Id, n.ItemId, n.Message)).ToListAsync();
         }
 
-        public async Task<string> updateItem(Nota nota)
+        public async Task<bool> updateItem(Nota nota)
         {
             // Buscar la nota por su Id
             var model = await _context.NotesModel.FindAsync(nota.Id);
+            var modelItem = await _context.ItemsModel.FindAsync(nota.ItemId);
 
             if (model == null)
             {
-                return "No se encontró la nota";
+                return false; // Nota no encontrada
+            }
+
+            if (modelItem.IsCompleted == true)
+            {
+                return false;
             }
 
             // Actualizar campos
@@ -49,7 +62,22 @@ namespace Hexagonal.Infraestructure.GenericosInfraestructure
             // Guardar cambios
             await _context.SaveChangesAsync();
 
-            return "Nota actualizada correctamente";
+            return true;
+        }
+
+        public Task<Nota?> GetByIdAsync(int id)
+        {
+            if (id == 0)
+            {
+                return Task.FromResult<Nota?>(null);
+            }
+            var model = _context.NotesModel.Find(id);
+            if (model == null)
+            {
+                return Task.FromResult<Nota?>(null);
+            }
+            var nota = new Nota(model.Id, model.ItemId, model.Message);
+            return Task.FromResult<Nota?>(nota);
         }
 
     }

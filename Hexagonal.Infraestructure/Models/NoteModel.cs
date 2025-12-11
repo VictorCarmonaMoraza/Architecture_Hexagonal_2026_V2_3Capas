@@ -6,9 +6,9 @@
         public int ItemId { get; set; }
         public string Message { get; set; }
 
-        public DateTime CreatdedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         public ItemModel Item { get; set; }
     }

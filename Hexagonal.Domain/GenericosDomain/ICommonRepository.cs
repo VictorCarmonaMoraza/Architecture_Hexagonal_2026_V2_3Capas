@@ -5,6 +5,8 @@
         Task<IEnumerable<TEntity>> GetAllItemsAsync();
         Task AddAsync(TEntity item);
 
-        Task<string> updateItem(TEntity id);
+        Task<bool> updateItem(TEntity id);
+
+        Task<TEntity?> GetByIdAsync(int id);
     }
 }
