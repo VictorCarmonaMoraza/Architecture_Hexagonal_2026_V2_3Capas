@@ -15,6 +15,7 @@
     <ProjectReference Include="..\Hexagonal.Application\Hexagonal.Application.csproj" />
     <ProjectReference Include="..\Hexagonal.Domain\Hexagonal.Domain.csproj" />
     <ProjectReference Include="..\Hexagonal.Infraestructure\Hexagonal.Infraestructure.csproj" />
+    <ProjectReference Include="..\MapperComponent\MapperComponent.csproj" />
   </ItemGroup>
 
 </Project>

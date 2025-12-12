@@ -1,16 +1,21 @@
 ﻿using Hexagonal.Application.Case_Uso;
 using Hexagonal.Application.Case_Uso_DTO;
 using Hexagonal.Application.Case_Uso_Genericos;
+using Hexagonal.Application.Case_Uso_Mapper;
 using Hexagonal.Application.DTOs;
 using Hexagonal.Application.Genericos;
+using Hexagonal.Application.Mapper;
 using Hexagonal.Application.Port_Primary;
 using Hexagonal.Domain.Entities;
 using Hexagonal.Domain.GenericosDomain;
 using Hexagonal.Domain.interfaces;
+using Hexagonal.Domain.IRepository;
 using Hexagonal.Infraestructure.DBContext;
 using Hexagonal.Infraestructure.GenericosInfraestructure;
+using Hexagonal.Infraestructure.Models;
 using Hexagonal.Infraestructure.Repository;
 using Hexagonal.Infraestructure.RepositoryDTO;
+using MapperComponent;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
@@ -35,6 +40,13 @@ namespace API.Extensions
             //DTO en Application
             services.AddTransient<ICommonRepository<NoteDTO>, NoteDTORepository>();
             services.AddTransient<ICommonService<NoteDTO>, NoteDTOService>();
+
+            //Mapper
+
+            services.AddTransient<IAddRepository<NoteModel>, NoteMapperRepository>();
+            services.AddTransient<IMapper<NoteDTO, Nota>, NoteEntityMapper>();
+            services.AddTransient<IMapper<NoteDTO, NoteModel>, NoteModelMapper>();
+            services.AddTransient<IAddService<NoteDTO, NoteModel>, NoteMapperService<NoteDTO, NoteModel>>();
 
 
             return services;

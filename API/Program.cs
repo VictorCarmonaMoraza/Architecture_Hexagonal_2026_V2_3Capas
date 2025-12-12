@@ -9,6 +9,7 @@ using Hexagonal.Domain.GenericosDomain;
 using Hexagonal.Domain.interfaces;
 using Hexagonal.Infraestructure.DBContext;
 using Hexagonal.Infraestructure.GenericosInfraestructure;
+using Hexagonal.Infraestructure.Models;
 using Hexagonal.Infraestructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -69,7 +70,7 @@ app.MapGet("/notes", async (ICommonService<Nota> notaService) =>
     var notas = await notaService.GetAllItemsAsync();
     return Results.Ok(notas);
 }).WithName("GetNotas");
-app.MapPost("/notes", async (Nota nota,ICommonService<Nota> notaService) =>
+app.MapPost("/notes", async (Nota nota, ICommonService<Nota> notaService) =>
 {
     await notaService.AddItemAsync(nota);
     return Results.Created();
@@ -95,17 +96,27 @@ app.MapPut("/notes/{id}", async (int id, string newmessage, ICommonService<Nota>
 .WithName("UpdateNota");
 
 //DTO Endpoints
-app.MapGet("/noteDTO", async (ICommonService<NoteDTO> service)=>{
+app.MapGet("/noteDTO", async (ICommonService<NoteDTO> service) =>
+{
 
     return await service.GetAllItemsAsync();
 
 }).WithName("GetNotesDTO");
 
-app.MapPost("/noteDTO", async (NoteDTO note, ICommonService<NoteDTO> service)=>{
+app.MapPost("/noteDTO", async (NoteDTO note, ICommonService<NoteDTO> service) =>
+{
     await service.AddItemAsync(note);
     //Devuelve un 201 que se ha creado correctamente
     return Results.Created();
 }).WithName("CreateNoteDTO");
+
+//Mapper Endpoints
+app.MapPost("/noteMapper", async (NoteDTO note, IAddService<NoteDTO, NoteModel> service) =>
+{
+    await service.AddAsync(note);
+    //Devuelve un 201 que se ha creado correctamente
+    return Results.Created();
+}).WithName("CreateNoteMapper");
 
 
 

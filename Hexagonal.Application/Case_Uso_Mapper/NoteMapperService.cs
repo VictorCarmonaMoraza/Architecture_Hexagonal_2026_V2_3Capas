@@ -33,6 +33,11 @@ namespace Hexagonal.Application.Case_Uso_Mapper
             // Mapeo a modelo de salida (INFRAESTRUCTURA)
             var noteModel =_mapperModel.Map(dto);
 
+            if(nota.Message.Length < 3)
+            {
+                throw new Exception("La nota debe tener al menos 5 caracteres");
+            }
+
             await _repository.AddAsync(noteModel);
         }
     }
