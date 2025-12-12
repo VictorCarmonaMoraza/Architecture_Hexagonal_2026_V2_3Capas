@@ -22,7 +22,8 @@ namespace Hexagonal.Infraestructure.RepositoryDTO
                 Id = item.Id,
                 ItemId = item.ItemId,
                 Color = item.Color,
-                Message = item.Message
+                Message = item.Message,
+                CreatedDate = DateTime.UtcNow
             };
             _context.NotesModel.Add(model);
             await _context.SaveChangesAsync();

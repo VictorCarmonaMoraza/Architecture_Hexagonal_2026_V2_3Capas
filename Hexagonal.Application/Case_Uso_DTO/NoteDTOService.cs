@@ -1,5 +1,6 @@
 ﻿using Hexagonal.Application.DTOs;
 using Hexagonal.Application.Genericos;
+using Hexagonal.Domain.GenericosDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Hexagonal.Application.Case_Uso_DTO
 {
     public class NoteDTOService : ICommonService<NoteDTO>
     {
-        private readonly ICommonService<NoteDTO> _noteRepository;
+        private readonly ICommonRepository<NoteDTO> _noteRepository;
 
-        public NoteDTOService(ICommonService<NoteDTO> noteRepository)
+        public NoteDTOService(ICommonRepository<NoteDTO> noteRepository)
         {
             _noteRepository = noteRepository;
         }
@@ -20,7 +21,7 @@ namespace Hexagonal.Application.Case_Uso_DTO
 
         public async Task AddItemAsync(NoteDTO noteDTO)
         {
-            await _noteRepository.AddItemAsync(noteDTO);
+            await _noteRepository.AddAsync(noteDTO);
         }
 
         public async Task<IEnumerable<NoteDTO>> GetAllItemsAsync()

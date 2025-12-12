@@ -1,6 +1,7 @@
 using API.Extensions;
 using Hexagonal.Application.Case_Uso;
 using Hexagonal.Application.Case_Uso_Genericos;
+using Hexagonal.Application.DTOs;
 using Hexagonal.Application.Genericos;
 using Hexagonal.Application.Port_Primary;
 using Hexagonal.Domain.Entities;
@@ -92,6 +93,20 @@ app.MapPut("/notes/{id}", async (int id, string newmessage, ICommonService<Nota>
         : Results.BadRequest("No se pudo actualizar la nota porque esta finalizada");
 })
 .WithName("UpdateNota");
+
+//DTO Endpoints
+app.MapGet("/noteDTO", async (ICommonService<NoteDTO> service)=>{
+
+    return await service.GetAllItemsAsync();
+
+}).WithName("GetNotesDTO");
+
+app.MapPost("/noteDTO", async (NoteDTO note, ICommonService<NoteDTO> service)=>{
+    await service.AddItemAsync(note);
+    //Devuelve un 201 que se ha creado correctamente
+    return Results.Created();
+}).WithName("CreateNoteDTO");
+
 
 
 
