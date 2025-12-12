@@ -17,7 +17,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//Nunca sera la conexion nula porque esta en appsettings.json por eso añado el signo de exclamacion
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
 //Inyeccion de dependencias
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
