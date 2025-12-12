@@ -3,5 +3,6 @@
   <Project Path="Hexagonal.Application/Hexagonal.Application.csproj" />
   <Project Path="Hexagonal.Domain/Hexagonal.Domain.csproj" />
   <Project Path="Hexagonal.Infraestructure/Hexagonal.Infraestructure.csproj" />
+  <Project Path="MapperComponent/MapperComponent.csproj" Id="3b4f9adb-a3af-42e3-a82f-730d05d0b65b" />
   <Project Path="Proyecto_De_Consola/Proyecto_De_Consola.csproj" Id="abd1102d-98ad-463c-9a2a-5af540dabfed" />
 </Solution>
