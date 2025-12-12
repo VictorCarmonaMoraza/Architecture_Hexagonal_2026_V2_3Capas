@@ -1,7 +1,7 @@
 ﻿namespace Hexagonal.Application.Mapper
 {
-    public interface IMapper<Data_Entrada,Data_Salida>
+    public interface IMapper<data_entrada_DTO, Data_Salida_Model>
     {
-        public Data_Salida Map(Data_Entrada data_entrada);
+        public Data_Salida_Model Map(data_entrada_DTO dto);
     }
 }
