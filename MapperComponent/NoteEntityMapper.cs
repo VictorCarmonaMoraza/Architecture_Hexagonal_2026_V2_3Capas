@@ -4,6 +4,7 @@ using Hexagonal.Domain.Entities;
 
 namespace MapperComponent
 {
+    // Mapper de NoteDTO a Nota (Entidad de Dominio)
     public class NoteEntityMapper : IMapper<NoteDTO, Nota>
     {
         //Forma 1
